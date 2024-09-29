@@ -1,0 +1,103 @@
+{
+    "name": "ddim_mpnn_full_ext2_small",
+    "num_epochs": 10000,
+    "learningrate": 0.0001,
+    "batchsize": 200,
+    "num_workers": 0,
+    "timesteps": 50,
+    "use_swa": true,
+    "context": true,
+    "use_attention": false,
+    "model_type": "ddim",
+    "path_to_train": "/storage/agrp/dmitrykl/CaloSim/data/dataset_1_pions_1.hdf5",
+    "path_to_valid": "/storage/agrp/dmitrykl/CaloSim/data/dataset_1_pions_2.hdf5",
+    "path_to_test": "",
+    "reduce_ds_train": -1,
+    "reduce_ds_valid": 2000,
+    "entry_start_train": 0,
+    "entry_start_valid": 0,
+    "loss_type": "mse",
+    "time_embedding_size": 256,
+    "log_scale": false,
+    "logit": true,
+    "layer_norm": false,
+    "graph_type": "manual",
+    "graph_k": 1,
+    "graph_radius": 1.2,
+    "graph_ext": true,
+    "n_layers": 45,
+    "dataset": "calochallenge",
+    "pred_type": "cell",
+    "min_max": false,
+    "log_coord": false,
+    "max_deposit": 6.5,
+    "init_model": {
+        "particle_encoder": {
+            "input_size": 1,
+            "output_size": 150,
+            "layers": [
+                16,
+                32,
+                64
+            ]
+        },
+        "cell_encoder": {
+            "input_size": 3,
+            "output_size": 150,
+            "layers": [
+                16,
+                32,
+                64
+            ]
+        },
+        "layer_embedding": 32,
+        "output_size": 150,
+        "layers": [
+            150,
+            150
+        ]
+    },
+    "gnn_model": {
+        "n_iter": 4,
+        "input_size": 150,
+        "hidden_size": 150,
+        "output_size": 150,
+        "node_type": "cells",
+        "features": "features",
+        "edge_type": "cell_to_cell",
+        "init_layers": [
+            150,
+            150
+        ],
+        "mpnn_layers": [
+            150,
+            150
+        ]
+    },
+    "output_model": {
+        "noise_prediction_layers": [
+            150,
+            150,
+            128
+        ]
+    },
+    "var transform": {
+        "energy_logit_mean": -12.0321,
+        "energy_logit_std": 2.527,
+        "energy_log_mean": 0.0013,
+        "energy_log_std": 0.0085,
+        "phi_mean": 0,
+        "phi_std": 257.7772,
+        "eta_mean": 11.6229,
+        "eta_std": 272.344,
+        "particle_mean": 160129.7031,
+        "particle_std": 488836.1562
+    },
+    "config": "configs/ddim_pion_mpnn_full.json",
+    "gpus": "0",
+    "test_run": false,
+    "no_logging": false,
+    "accelerator": "gpu",
+    "num_gpus": 1,
+    "run_name": "ddim_mpnn_full_ext2_small_20230926-T173010"
+}
